@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
+import WhatsAppButton from '@/Whatsapp';
 import { motion, AnimatePresence, useInView, useAnimation } from 'motion/react';
 import {
   Zap,
@@ -808,6 +809,8 @@ export default function App() {
               </form>
             )}
           </div>
+          <WhatsAppButton phone="34612345678" message="Hola, me interesa tu asesoramiento deportivo"
+          />
         </div>
       </section>
 
