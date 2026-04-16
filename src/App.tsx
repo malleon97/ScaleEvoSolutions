@@ -749,21 +749,21 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-text-muted">Nombre completo</label>
-                    <input required type="text" className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors" placeholder="Ej. Juan Pérez" />
+                    <input name="name" required type="text" className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors" placeholder="Ej. Juan Pérez" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-text-muted">Email de empresa</label>
-                    <input required type="email" className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors" placeholder="juan@empresa.com" />
+                    <input name="email" required type="email" className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors" placeholder="juan@empresa.com" />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-text-muted">Teléfono</label>
-                    <input required type="tel" className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors" placeholder="+34 600 000 000" />
+                    <input name="phone" required type="tel" className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors" placeholder="+34 600 000 000" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-text-muted">Tipo de negocio</label>
-                    <select className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors">
+                    <select name="business_type" className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors">
                       <option>Clínica / Salud</option>
                       <option>Academia / Formación</option>
                       <option>Servicios profesionales</option>
@@ -775,7 +775,7 @@ export default function App() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-text-muted">¿Cuál es tu principal problema ahora mismo?</label>
-                  <select className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors">
+                  <select name="objective" className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors">
                     <option>No tengo suficientes leads</option>
                     <option>Tengo leads pero no convierten</option>
                     <option>No tengo sistema de seguimiento</option>
@@ -786,7 +786,7 @@ export default function App() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-text-muted">Mensaje libre (opcional)</label>
-                  <textarea rows={4} className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors" placeholder="Cuéntanos un poco más..."></textarea>
+                  <textarea name="message" rows={4} className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors" placeholder="Cuéntanos un poco más..."></textarea>
                 </div>
                 <button
                   disabled={formStatus === 'loading'}
