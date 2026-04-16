@@ -22,6 +22,8 @@ import {
   BarChart3
 } from 'lucide-react';
 
+// ← AQUÍ, fuera del componente
+emailjs.init("ab1o4#j31Zy23dQdF");  // tu public key real
 // --- Components ---
 
 const Counter = ({ value, suffix = "", prefix = "" }: { value: string, suffix?: string, prefix?: string }) => {
