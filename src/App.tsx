@@ -106,8 +106,16 @@ export default function App() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setFormStatus('loading');
-    await emailjs.sendForm('service_brogf5z', 'template_6qle42j', e.target);
-    setTimeout(() => setFormStatus('success'), 1500);
+
+    try {
+      const result = await emailjs.sendForm('service_brogf5z', 'template_6qle42j', e.target as HTMLFormElement);
+      console.log('Éxito:', result);
+      setFormStatus('success');
+    } catch (error) {
+      console.error('Error EmailJS:', error);
+      setFormStatus('error');
+      alert('Error al enviar: ' + JSON.stringify(error));
+    }
   };
 
   const navLinks = [
