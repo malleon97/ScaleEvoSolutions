@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useRef, FormEvent } from 'react';
+import emailjs from '@emailjs/browser';
 import { motion, AnimatePresence, useInView, useAnimation } from 'motion/react';
-import { 
-  Zap, 
-  Monitor, 
-  Filter, 
-  Settings, 
-  CheckCircle2, 
-  ChevronDown, 
-  Menu, 
-  X, 
-  ArrowRight, 
-  TrendingUp, 
-  Users, 
-  Clock, 
-  Linkedin, 
-  Instagram, 
+import {
+  Zap,
+  Monitor,
+  Filter,
+  Settings,
+  CheckCircle2,
+  ChevronDown,
+  Menu,
+  X,
+  ArrowRight,
+  TrendingUp,
+  Users,
+  Clock,
+  Linkedin,
+  Instagram,
   Twitter,
   AlertCircle,
   MessageSquare,
@@ -35,7 +36,7 @@ const Counter = ({ value, suffix = "", prefix = "" }: { value: string, suffix?: 
       const end = numericValue;
       const duration = 2000;
       const increment = end / (duration / 16);
-      
+
       const timer = setInterval(() => {
         start += increment;
         if (start >= end) {
@@ -60,7 +61,7 @@ const AccordionItem: React.FC<{ question: string, answer: string }> = ({ questio
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="border-b border-border-subtle">
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-6 flex justify-between items-center text-left hover:text-primary-glow transition-colors"
       >
@@ -102,9 +103,10 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setFormStatus('loading');
+    await emailjs.sendForm('service_brogf5z', 'template_6qle42j', e.target);
     setTimeout(() => setFormStatus('success'), 1500);
   };
 
@@ -141,16 +143,16 @@ export default function App() {
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
+              <a
+                key={link.name}
+                href={link.href}
                 className="text-text-secondary hover:text-primary-glow font-medium transition-colors"
               >
                 {link.name}
               </a>
             ))}
-            <a 
-              href="#contacto" 
+            <a
+              href="#contacto"
               className="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-sm font-semibold transition-all glow-blue flex items-center gap-2 text-[13px]"
             >
               Quiero escalar mi negocio →
@@ -166,7 +168,7 @@ export default function App() {
         {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -174,17 +176,17 @@ export default function App() {
             >
               <div className="flex flex-col gap-4">
                 {navLinks.map((link) => (
-                  <a 
-                    key={link.name} 
-                    href={link.href} 
+                  <a
+                    key={link.name}
+                    href={link.href}
                     onClick={() => setIsMenuOpen(false)}
                     className="text-lg font-medium text-text-secondary hover:text-primary-glow"
                   >
                     {link.name}
                   </a>
                 ))}
-                <a 
-                  href="#contacto" 
+                <a
+                  href="#contacto"
                   onClick={() => setIsMenuOpen(false)}
                   className="bg-primary text-white px-6 py-4 rounded-xl font-bold text-center"
                 >
@@ -201,15 +203,15 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
             <div className="flex flex-col items-start text-left">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary text-primary-glow text-[11px] font-semibold mb-6 uppercase tracking-[0.5px]"
               >
                 Sistema probado en +40 negocios
               </motion.div>
-              
-              <motion.h1 
+
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
@@ -218,7 +220,7 @@ export default function App() {
                 Tu negocio está perdiendo clientes que <span className="text-primary-glow">ya pagaste</span> para conseguir.
               </motion.h1>
 
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -227,7 +229,7 @@ export default function App() {
                 Scale Evo Solutions automatiza tu captación, reactiva tus leads dormidos y gestiona tu CRM — para que consigas más ventas sin trabajar el doble.
               </motion.p>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
@@ -243,7 +245,7 @@ export default function App() {
             </div>
 
             {/* Dashboard Mockup */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
@@ -269,8 +271,8 @@ export default function App() {
                 <div className="text-[10px] text-text-muted uppercase mb-2">Tasa de Conversión (Semanas 1-8)</div>
                 <div className="h-40 flex items-end gap-2 pt-4">
                   {[30, 45, 35, 60, 55, 90, 100].map((h, i) => (
-                    <div 
-                      key={i} 
+                    <div
+                      key={i}
                       className={`flex-1 rounded-t-sm transition-all duration-1000 ${i >= 5 ? 'bg-primary-glow opacity-100' : 'bg-primary opacity-40'}`}
                       style={{ height: `${h}%` }}
                     />
@@ -325,32 +327,32 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
             {[
-              { 
-                icon: <AlertCircle className="text-amber w-8 h-8" />, 
-                text: "Tienes leads en el CRM que nunca contestaron — y ahí siguen, muertos, costándote dinero que ya gastaste." 
+              {
+                icon: <AlertCircle className="text-amber w-8 h-8" />,
+                text: "Tienes leads en el CRM que nunca contestaron — y ahí siguen, muertos, costándote dinero que ya gastaste."
               },
-              { 
-                icon: <Monitor className="text-amber w-8 h-8" />, 
-                text: "Tu web tiene visitas pero no convierte. No sabes por qué. Cambias cosas y nada mejora." 
+              {
+                icon: <Monitor className="text-amber w-8 h-8" />,
+                text: "Tu web tiene visitas pero no convierte. No sabes por qué. Cambias cosas y nada mejora."
               },
-              { 
-                icon: <Clock className="text-amber w-8 h-8" />, 
-                text: "Haces seguimiento manual por WhatsApp o Excel. Se te escapan clientes todos los días sin darte cuenta." 
+              {
+                icon: <Clock className="text-amber w-8 h-8" />,
+                text: "Haces seguimiento manual por WhatsApp o Excel. Se te escapan clientes todos los días sin darte cuenta."
               },
-              { 
-                icon: <Filter className="text-amber w-8 h-8" />, 
-                text: "Pagas en publicidad, consigues leads, pero el 70% nunca llega a comprar porque nadie les da seguimiento rápido." 
+              {
+                icon: <Filter className="text-amber w-8 h-8" />,
+                text: "Pagas en publicidad, consigues leads, pero el 70% nunca llega a comprar porque nadie les da seguimiento rápido."
               },
-              { 
-                icon: <Users className="text-amber w-8 h-8" />, 
-                text: "No tienes sistema. Tienes un negocio que depende de ti 100% — y eso tiene un techo muy bajo." 
+              {
+                icon: <Users className="text-amber w-8 h-8" />,
+                text: "No tienes sistema. Tienes un negocio que depende de ti 100% — y eso tiene un techo muy bajo."
               },
-              { 
-                icon: <Settings className="text-amber w-8 h-8" />, 
-                text: "Sabes que necesitas mejorar esto, pero no tienes tiempo, ni el equipo técnico para montarlo." 
+              {
+                icon: <Settings className="text-amber w-8 h-8" />,
+                text: "Sabes que necesitas mejorar esto, pero no tienes tiempo, ni el equipo técnico para montarlo."
               }
             ].map((pain, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 whileHover={{ y: -5 }}
                 className="bg-bg-secondary p-8 rounded-2xl border border-border-subtle hover:border-amber/40 transition-all"
@@ -379,7 +381,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Pilar 1 */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -10 }}
               className="bg-bg-secondary p-10 rounded-3xl border-t-4 border-t-primary border-x border-b border-border-subtle glow-blue-hover transition-all"
             >
@@ -398,7 +400,7 @@ export default function App() {
             </motion.div>
 
             {/* Pilar 2 */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -10 }}
               className="bg-bg-secondary p-10 rounded-3xl border-t-4 border-t-primary border-x border-b border-border-subtle glow-blue-hover transition-all"
             >
@@ -417,7 +419,7 @@ export default function App() {
             </motion.div>
 
             {/* Pilar 3 */}
-            <motion.div 
+            <motion.div
               whileHover={{ y: -10 }}
               className="bg-bg-secondary p-10 rounded-3xl border-t-4 border-t-primary border-x border-b border-border-subtle glow-blue-hover transition-all"
             >
@@ -448,7 +450,7 @@ export default function App() {
           <div className="relative">
             {/* Connector Line */}
             <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-primary/20 -translate-y-1/2" />
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 relative z-10">
               {[
                 { step: '01', title: 'AUDITORÍA', days: 'Días 1-3', desc: 'Analizamos tu negocio: qué tienes, qué falta y dónde estás perdiendo clientes y dinero. Sin coste.' },
@@ -647,7 +649,7 @@ export default function App() {
               <p className="text-text-secondary text-lg mb-10 leading-relaxed">
                 No creo en la teoría de las agencias tradicionales. Creo en sistemas reales que generan resultados medibles. Mi objetivo es que tu tecnología trabaje para ti, no al revés.
               </p>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                 {[
                   'Certificado en GoHighLevel y HubSpot',
@@ -731,7 +733,7 @@ export default function App() {
 
           <div className="bg-bg-secondary p-8 md:p-12 rounded-3xl border border-border-subtle">
             {formStatus === 'success' ? (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-12"
@@ -786,7 +788,7 @@ export default function App() {
                   <label className="text-sm font-semibold text-text-muted">Mensaje libre (opcional)</label>
                   <textarea rows={4} className="w-full bg-bg-main border border-border-subtle rounded-xl px-4 py-4 focus:border-primary outline-none transition-colors" placeholder="Cuéntanos un poco más..."></textarea>
                 </div>
-                <button 
+                <button
                   disabled={formStatus === 'loading'}
                   className="w-full bg-primary hover:bg-primary/80 disabled:bg-primary/50 text-white py-5 rounded-2xl font-bold text-lg transition-all glow-blue flex items-center justify-center gap-3"
                 >
@@ -814,7 +816,7 @@ export default function App() {
       </footer>
 
       {/* Floating CTA Button (Desktop) */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : 100 }}
         className="fixed bottom-8 right-8 z-40 hidden lg:block"
