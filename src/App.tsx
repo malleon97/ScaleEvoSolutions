@@ -832,7 +832,7 @@ export default function App() {
       <motion.div
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: scrolled ? 1 : 0, x: scrolled ? 0 : 100 }}
-        className="fixed bottom-8 right-8 z-40 hidden lg:block"
+        className="fixed bottom-6 right-6 z-40 hidden lg:block"
       >
         <a href="#contacto" className="bg-primary hover:bg-primary/80 text-white px-6 py-4 rounded-2xl font-bold shadow-2xl glow-blue flex items-center gap-2 transition-all">
           Auditoría gratis <ArrowRight className="w-4 h-4" />
